@@ -35,24 +35,25 @@
   .github-btn { display: flex; align-items: center; gap: 0.5rem; background: var(--accent2); border: 1px solid var(--accent2); border-radius: 6px; padding: 0.4rem 0.9rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: #fff; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
   .github-btn:hover { background: var(--accent); border-color: var(--accent); }
   .github-btn svg { width: 15px; height: 15px; fill: currentColor; }
-  .hero { min-height: calc(100vh - 64px); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
-  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 5rem; position: relative; z-index: 1; background: linear-gradient(135deg, #fff 60%, #eef2fc 100%); }
-  .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
-  .hero-tag::before { content: ''; display: block; width: 40px; height: 2px; background: var(--accent); }
-  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 5.5vw, 5.5rem); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--accent2); }
+  
+  /* Modified Hero Section */
+  .hero { min-height: 85vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .hero-content { position: relative; z-index: 2; padding: 4rem 2rem; max-width: 900px; display: flex; flex-direction: column; align-items: center; }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+  .hero-tag::before, .hero-tag::after { content: ''; display: block; width: 30px; height: 2px; background: var(--accent); }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3.5rem, 8vw, 6.5rem); line-height: 1; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--accent2); }
   h1 em { font-style: italic; color: var(--accent); }
-  .hero-sub { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 420px; margin-bottom: 2rem; }
-  .hero-contact { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 2.5rem; }
-  .hero-contact a { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--accent2); text-decoration: none; transition: color 0.2s; }
+  .hero-sub { font-size: 1.1rem; color: var(--text-muted); line-height: 1.7; max-width: 600px; margin-bottom: 2.5rem; }
+  .hero-contact { display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; flex-wrap: wrap; }
+  .hero-contact a { font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.08em; color: var(--accent2); text-decoration: none; transition: color 0.2s; }
   .hero-contact a:hover { color: var(--accent); }
-  .hero-contact span { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.06em; }
-  .hero-stats { display: flex; gap: 3rem; border-top: 2px solid var(--border); padding-top: 2rem; }
-  .stat-val { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); }
-  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
-  .hero-right { position: relative; border-left: 3px solid var(--accent); overflow: hidden; background: linear-gradient(135deg, #1a3a6b 0%, #0f2548 100%); }
-  .blueprint { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 40px 40px; }
-  .blueprint-drawing { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-  .blueprint-drawing svg { width: 90%; height: 90%; opacity: 0.9; }
+  .hero-stats { display: flex; gap: 4rem; border-top: 2px solid var(--border); padding-top: 2.5rem; justify-content: center; }
+  .stat-val { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--accent); }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+  
+  .blueprint-bg { position: absolute; inset: 0; background-color: #fff; background-image: linear-gradient(rgba(26,58,107,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,58,107,0.04) 1px, transparent 1px); background-size: 50px 50px; z-index: 1; }
+
+  /* Project Section styles preserved */
   .projects-section { padding: 6rem 5rem; border-top: 3px solid var(--accent2); background: var(--bg); }
   .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 2rem; }
   .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1; color: var(--accent2); }
@@ -112,33 +113,18 @@
   .footer-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
   .footer-link:hover { color: #fff; }
   .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; }
- 
-  /* pin pulse rings */
-  @keyframes pinRing {
-    0%   { r: 8;  opacity: 0.7; }
-    100% { r: 22; opacity: 0; }
-  }
-  .pin-ring { animation: pinRing 2.2s ease-out infinite; }
-  .pin-ring-2 { animation-delay: 0.75s; }
-  .pin-ring-3 { animation-delay: 1.5s; }
-  /* land hover */
-  .land-active { transition: fill 0.25s; }
-  .land-active:hover { fill: #2e5080; }
 
   @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .hero-left > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
-  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
-  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
-  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
-  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
-  .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
-  @keyframes drawLine { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
-  .draw-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 2s ease 0.5s forwards; }
+  .hero-content > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
   @media (max-width: 900px) {
     header { padding: 0 1.5rem; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 4rem 2rem; }
+    .hero-stats { gap: 2rem; }
     .projects-section, .about-section { padding: 4rem 2rem; }
     .about-section { grid-template-columns: 1fr; gap: 3rem; }
     footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
@@ -161,15 +147,24 @@
 </header>
 
 <section class="hero">
-  <div class="hero-left">
+  <div class="blueprint-bg"></div>
+  <div class="hero-content">
     <div class="hero-tag">Structural Project Engineer · Louisville, KY</div>
     <h1>Suraj<br><em>Thapa</em><br>PE</h1>
-    <p class="hero-sub">Structural Project Engineer at Cornerstone Engineering Inc. — specializing in water/wastewater infrastructure, seismic assessment and retrofit, and industrial facilities. 10+ years across Nepal, Thailand, and the USA.</p>
+    <p class="hero-sub">Specializing in water/wastewater infrastructure, seismic assessment and retrofit, and industrial facilities. 10+ years across Nepal, Thailand, and the USA.</p>
     <div class="hero-contact">
       <a href="mailto:suraj.t@cornerstone.com">suraj.t@cornerstone.com</a>
       <a href="tel:+15027125611">+1 502-712-5611 (US)</a>
-      <span>2214 Plantside Dr., Louisville, KY 40299</span>
+      <a href="#">2214 Plantside Dr., Louisville, KY 40299</a>
     </div>
+    <div class="hero-stats">
+      <div><div class="stat-val">10+</div><div class="stat-label">Yrs Experience</div></div>
+      <div><div class="stat-val">30+</div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-val">3</div><div class="stat-label">Countries</div></div>
+    </div>
+  </div>
+</section>
+
 <section class="projects-section" id="projects">
   <div class="section-header">
     <div class="section-title"><span>// Portfolio</span>Selected Work</div>
@@ -189,8 +184,6 @@
   </div>
 
   <div class="projects-grid" id="projectsGrid">
-
-    <!-- 2025 -->
     <div class="year-divider" data-year-div="2025">
       <div class="year-divider-label">2025</div><div class="year-divider-line"></div>
       <div class="year-divider-count">2 projects</div>
@@ -214,7 +207,6 @@
       <div class="card-bottom"><div class="card-metric">✦ Federal / Navy</div></div>
     </div>
 
-    <!-- 2024 -->
     <div class="year-divider" data-year-div="2024">
       <div class="year-divider-label">2024</div><div class="year-divider-line"></div>
       <div class="year-divider-count">7 projects</div>
@@ -283,7 +275,6 @@
       <div class="card-bottom"><div class="card-metric">⬆ Stadium Renovation</div></div>
     </div>
 
-    <!-- 2023 -->
     <div class="year-divider" data-year-div="2023">
       <div class="year-divider-label">2023</div><div class="year-divider-line"></div>
       <div class="year-divider-count">5 projects</div>
@@ -334,7 +325,6 @@
       <div class="card-bottom"><div class="card-metric">⚡ Pump Upgrade</div></div>
     </div>
 
-    <!-- 2022 -->
     <div class="year-divider" data-year-div="2022">
       <div class="year-divider-label">2022</div><div class="year-divider-line"></div>
       <div class="year-divider-count">2 projects</div>
@@ -358,7 +348,6 @@
       <div class="card-bottom"><div class="card-metric">💰 $9.2M Budget</div></div>
     </div>
 
-    <!-- Pre-2022 -->
     <div class="year-divider" data-year-div="pre2022">
       <div class="year-divider-label">Pre-2022</div><div class="year-divider-line"></div>
       <div class="year-divider-count">6 key projects</div>
@@ -493,15 +482,42 @@
 <footer id="contact">
   <div class="footer-name">Suraj Thapa, PE</div>
   <div class="footer-links">
-    <a href="mailto:suraj.t@cornerstone.com" class="footer-link">Email</a>
-    <a href="mailto:suraj.t@cornerstone.com" class="footer-link">Gmail</a>
+    <a href="mailto:suraj.t@cornerstoneaec.com" class="footer-link">Email</a>
+    <a href="mailto:suraj.t@cornerstoneaec.com" class="footer-link">Gmail</a>
     <a href="https://linkedin.com" class="footer-link" target="_blank">LinkedIn</a>
     <a href="https://github.com" class="footer-link" target="_blank">GitHub</a>
   </div>
-  <div class="footer-copy">Cornerstone Engineering Inc. · Louisville, KY · +1 502-712-5611</div>
+  <div class="footer-copy">Cornerstone Engineering Inc. · Louisville, KY · +1 502-744-0887</div>
 </footer>
 
 <script>
-
+// ── YEAR FILTER ──
+function filterYear(year) {
+  document.querySelectorAll('.year-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.year === year);
+  });
+  const cards = document.querySelectorAll('.project-card');
+  const dividers = document.querySelectorAll('.year-divider');
+  let visible = 0;
+  if (year === 'all') {
+    cards.forEach(c => c.classList.remove('hidden'));
+    dividers.forEach(d => d.style.display = 'flex');
+    visible = cards.length;
+    document.getElementById('yearDisplay').textContent = 'All years';
+  } else {
+    cards.forEach(c => {
+      const show = c.dataset.year === year;
+      c.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    dividers.forEach(d => {
+      d.style.display = d.dataset.yearDiv === year ? 'flex' : 'none';
+    });
+    document.getElementById('yearDisplay').textContent = year === 'pre2022' ? 'Pre-2022' : year;
+  }
+  document.getElementById('countDisplay').textContent = visible;
+  document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+}
+</script>
 </body>
 </html>
