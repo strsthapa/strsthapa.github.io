@@ -1,654 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suraj Thapa | Civil & Structural Engineer</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --navy:   #0d1b2a;
-      --steel:  #1b3a5c;
-      --gold:   #c8973a;
-      --ivory:  #f5f0e8;
-      --light:  #eae4d8;
-      --muted:  #7a8c9e;
-      --white:  #ffffff;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'DM Sans', sans-serif;
-      background: var(--ivory);
-      color: var(--navy);
-      overflow-x: hidden;
-    }
-
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 100;
-      background: rgba(13,27,42,0.97);
-      backdrop-filter: blur(8px);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 6vw;
-      height: 64px;
-      border-bottom: 1px solid rgba(200,151,58,0.25);
-    }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.2rem; font-weight: 700;
-      color: var(--gold);
-      letter-spacing: 0.04em;
-    }
-
-    .nav-links { display: flex; gap: 2.4rem; list-style: none; }
-    .nav-links a {
-      color: rgba(255,255,255,0.75);
-      text-decoration: none;
-      font-size: 0.85rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      transition: color 0.25s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    /* ── HERO ── */
-    #hero {
-      min-height: 100vh;
-      background: var(--navy);
-      display: flex; align-items: center;
-      padding: 100px 6vw 60px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* blueprint grid overlay */
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(200,151,58,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(200,151,58,0.06) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-    }
-
-    /* big decorative structural element */
-    .hero-deco {
-      position: absolute; right: -40px; top: 50%; transform: translateY(-50%);
-      width: 520px; height: 520px; opacity: 0.07;
-      pointer-events: none;
-    }
-
-    .hero-content { max-width: 640px; position: relative; z-index: 1; animation: fadeUp 0.9s ease both; }
-
-    .hero-eyebrow {
-      display: inline-block;
-      background: rgba(200,151,58,0.15);
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 6px 16px; border-radius: 2px;
-      margin-bottom: 2rem;
-    }
-
-    h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 5.5vw, 5rem);
-      font-weight: 900; line-height: 1.05;
-      color: var(--white);
-      margin-bottom: 1.5rem;
-    }
-
-    h1 span { color: var(--gold); }
-
-    .hero-sub {
-      font-size: 1.05rem; font-weight: 300; line-height: 1.75;
-      color: rgba(255,255,255,0.62);
-      max-width: 500px;
-      margin-bottom: 2.8rem;
-    }
-
-    .hero-cta {
-      display: flex; gap: 1rem; flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 13px 30px;
-      font-size: 0.85rem; font-weight: 500;
-      letter-spacing: 0.06em; text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 3px;
-      transition: all 0.25s;
-    }
-
-    .btn-primary {
-      background: var(--gold); color: var(--navy);
-    }
-    .btn-primary:hover { background: #e0ac4a; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,151,58,0.35); }
-
-    .btn-outline {
-      border: 1.5px solid rgba(255,255,255,0.35); color: rgba(255,255,255,0.8);
-    }
-    .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
-
-    .hero-stats {
-      display: flex; gap: 3rem; margin-top: 4rem;
-      padding-top: 2.5rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .stat-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem; font-weight: 700; color: var(--gold);
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 0.78rem; color: rgba(255,255,255,0.45);
-      letter-spacing: 0.08em; text-transform: uppercase;
-    }
-
-    /* ── SECTION SHARED ── */
-    section { padding: 100px 6vw; }
-
-    .section-header { margin-bottom: 3.5rem; }
-
-    .section-tag {
-      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 0.75rem; display: block;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 3.5vw, 3rem);
-      font-weight: 700; line-height: 1.15;
-      color: var(--navy);
-    }
-
-    /* ── ABOUT ── */
-    #about { background: var(--white); }
-
-    .about-grid {
-      display: grid; grid-template-columns: 1fr 1.6fr; gap: 6vw; align-items: center;
-    }
-
-    .about-img-wrap {
-      position: relative;
-    }
-
-    .about-img-placeholder {
-      width: 100%; aspect-ratio: 3/4;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--steel) 100%);
-      border-radius: 4px;
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      gap: 12px;
-    }
-
-    .about-img-placeholder svg { opacity: 0.25; }
-
-    .about-img-placeholder p {
-      font-size: 0.78rem; color: rgba(255,255,255,0.4);
-      letter-spacing: 0.1em; text-transform: uppercase;
-    }
-
-    .about-accent {
-      position: absolute; bottom: -20px; right: -20px;
-      width: 80px; height: 80px;
-      background: var(--gold); border-radius: 3px;
-      z-index: 0;
-    }
-
-    .about-img-wrap { z-index: 1; }
-    .about-img-placeholder { position: relative; z-index: 1; }
-
-    .about-text p {
-      font-size: 1rem; line-height: 1.85; color: #3a4a5c;
-      margin-bottom: 1.2rem;
-    }
-
-    .about-highlights {
-      display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap;
-    }
-
-    .highlight-item {
-      display: flex; align-items: center; gap: 10px;
-    }
-
-    .highlight-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--gold); flex-shrink: 0;
-    }
-
-    .highlight-item span { font-size: 0.9rem; color: var(--navy); font-weight: 500; }
-
-    /* ── SKILLS ── */
-    #skills { background: var(--light); }
-
-    .skills-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
-    }
-
-    .skill-card {
-      background: var(--white);
-      border-radius: 4px;
-      padding: 2rem 2rem 2rem;
-      border-top: 3px solid var(--gold);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .skill-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(13,27,42,0.1); }
-
-    .skill-icon {
-      width: 44px; height: 44px;
-      background: rgba(200,151,58,0.12);
-      border-radius: 6px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.2rem;
-    }
-
-    .skill-card h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.1rem; font-weight: 700;
-      color: var(--navy); margin-bottom: 0.75rem;
-    }
-
-    .skill-list {
-      list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
-
-    .skill-list li {
-      background: var(--light); color: var(--steel);
-      font-size: 0.78rem; font-weight: 500;
-      padding: 4px 12px; border-radius: 2px;
-      letter-spacing: 0.04em;
-    }
-
-    /* ── PROJECTS ── */
-    #projects { background: var(--white); }
-
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2rem;
-    }
-
-    .project-card {
-      border-radius: 4px;
-      overflow: hidden;
-      border: 1px solid rgba(13,27,42,0.09);
-      transition: transform 0.3s, box-shadow 0.3s;
-      background: var(--white);
-    }
-
-    .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(13,27,42,0.12); }
-
-    .project-thumb {
-      height: 200px;
-      background: linear-gradient(135deg, var(--navy), var(--steel));
-      position: relative; overflow: hidden;
-      display: flex; align-items: center; justify-content: center;
-    }
-
-    .project-thumb svg { opacity: 0.15; }
-
-    .project-thumb-label {
-      position: absolute; bottom: 14px; left: 16px;
-      background: var(--gold); color: var(--navy);
-      font-size: 0.7rem; font-weight: 700;
-      letter-spacing: 0.1em; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 2px;
-    }
-
-    .project-body { padding: 1.75rem 1.75rem 1.5rem; }
-
-    .project-body h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-weight: 700;
-      color: var(--navy); margin-bottom: 0.6rem;
-    }
-
-    .project-body p {
-      font-size: 0.9rem; line-height: 1.7; color: #5a6a7a;
-      margin-bottom: 1.25rem;
-    }
-
-    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-
-    .project-tags span {
-      background: var(--light); color: var(--steel);
-      font-size: 0.72rem; font-weight: 500;
-      padding: 3px 10px; border-radius: 2px;
-    }
-
-    .project-footer {
-      padding: 1rem 1.75rem;
-      border-top: 1px solid var(--light);
-      display: flex; justify-content: space-between; align-items: center;
-    }
-
-    .project-link {
-      font-size: 0.8rem; font-weight: 500;
-      color: var(--gold); text-decoration: none;
-      letter-spacing: 0.06em;
-      display: flex; align-items: center; gap: 6px;
-    }
-    .project-link:hover { gap: 10px; }
-    .project-link span { transition: gap 0.2s; }
-
-    /* ── FOOTER ── */
-    footer {
-      background: var(--navy);
-      padding: 60px 6vw 40px;
-      display: flex; justify-content: space-between; align-items: center;
-      flex-wrap: wrap; gap: 2rem;
-      border-top: 2px solid var(--gold);
-    }
-
-    .footer-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700; color: var(--white);
-    }
-
-    .footer-name span { color: var(--gold); }
-
-    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.35); margin-top: 6px; }
-
-    .footer-links { display: flex; gap: 1.5rem; }
-
-    .footer-links a {
-      color: rgba(255,255,255,0.55); text-decoration: none;
-      font-size: 0.82rem; transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--gold); }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .fade-in {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 768px) {
-      .about-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 1.8rem; }
-      nav { padding: 0 4vw; }
-      .nav-links { gap: 1.4rem; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suraj Thapa, PE — Structural Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f8f9fc; --surface: #ffffff; --surface2: #f0f3f8;
+    --border: #dde3ee; --accent: #c8102e; --accent2: #1a3a6b;
+    --text: #0f1c2e; --text-muted: #4a5872; --text-dim: #8a9ab5; --red: #c8102e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section[id], footer[id] { scroll-margin-top: 64px; }
+  body { background: var(--bg); color: var(--text); font-family: 'Instrument Sans', sans-serif; overflow-x: hidden; }
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.4;
+  }
+  header {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(248,249,252,0.92); backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--accent2);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 3rem; height: 64px;
+    box-shadow: 0 2px 16px rgba(26,58,107,0.07);
+  }
+  .logo { font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent2); }
+  nav { display: flex; gap: 2rem; align-items: center; }
+  nav a { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+  nav a:hover { color: var(--accent); }
+  .github-btn { display: flex; align-items: center; gap: 0.5rem; background: var(--accent2); border: 1px solid var(--accent2); border-radius: 6px; padding: 0.4rem 0.9rem; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: #fff; text-decoration: none; transition: background 0.2s, border-color 0.2s; }
+  .github-btn:hover { background: var(--accent); border-color: var(--accent); }
+  .github-btn svg { width: 15px; height: 15px; fill: currentColor; }
+  .hero { min-height: calc(100vh - 64px); display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 6rem 4rem 6rem 5rem; position: relative; z-index: 1; background: linear-gradient(135deg, #fff 60%, #eef2fc 100%); }
+  .hero-tag { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+  .hero-tag::before { content: ''; display: block; width: 40px; height: 2px; background: var(--accent); }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(3rem, 5.5vw, 5.5rem); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 1.5rem; color: var(--accent2); }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { font-size: 1rem; color: var(--text-muted); line-height: 1.7; max-width: 420px; margin-bottom: 2rem; }
+  .hero-contact { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 2.5rem; }
+  .hero-contact a { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; color: var(--accent2); text-decoration: none; transition: color 0.2s; }
+  .hero-contact a:hover { color: var(--accent); }
+  .hero-contact span { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); letter-spacing: 0.06em; }
+  .hero-stats { display: flex; gap: 3rem; border-top: 2px solid var(--border); padding-top: 2rem; }
+  .stat-val { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--accent); }
+  .stat-label { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+  .hero-right { position: relative; border-left: 3px solid var(--accent); overflow: hidden; background: linear-gradient(135deg, #1a3a6b 0%, #0f2548 100%); }
+  .blueprint { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 40px 40px; }
+  .blueprint-drawing { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .blueprint-drawing svg { width: 90%; height: 90%; opacity: 0.9; }
+  .projects-section { padding: 6rem 5rem; border-top: 3px solid var(--accent2); background: var(--bg); }
+  .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 3rem; flex-wrap: wrap; gap: 2rem; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3rem); line-height: 1; color: var(--accent2); }
+  .section-title span { display: block; font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+  .year-filter { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .year-btn { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; padding: 0.5rem 1rem; background: #fff; border: 1.5px solid var(--border); border-radius: 4px; color: var(--text-muted); cursor: pointer; transition: all 0.2s; }
+  .year-btn:hover { border-color: var(--accent2); color: var(--accent2); background: #eef2fc; }
+  .year-btn.active { border-color: var(--accent); color: #fff; background: var(--accent); }
+  .stats-bar { display: flex; gap: 1.5rem; margin-bottom: 3rem; padding: 1.2rem 1.5rem; background: var(--accent2); border-radius: 8px; font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: rgba(255,255,255,0.75); flex-wrap: wrap; }
+  .stats-bar strong { color: #fff; }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5px; background: var(--border); border: 1.5px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 24px rgba(26,58,107,0.07); }
+  .project-card { background: #fff; padding: 2rem; transition: background 0.2s, box-shadow 0.2s; cursor: pointer; position: relative; overflow: hidden; }
+  .project-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease; }
+  .project-card:hover { background: #fdf5f6; }
+  .project-card:hover::after { transform: scaleX(1); }
+  .project-card.hidden { display: none; }
+  .card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.2rem; }
+  .card-type { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.25rem 0.6rem; border-radius: 3px; border: 1px solid; }
+  .card-type.water { color: #1a3a6b; border-color: #1a3a6b; background: rgba(26,58,107,0.07); }
+  .card-type.industrial { color: #7b3fa0; border-color: #7b3fa0; background: rgba(123,63,160,0.07); }
+  .card-type.retrofit { color: #c8102e; border-color: #c8102e; background: rgba(200,16,46,0.07); }
+  .card-type.residential { color: #1a7a4a; border-color: #1a7a4a; background: rgba(26,122,74,0.07); }
+  .card-type.civic { color: #b07800; border-color: #b07800; background: rgba(176,120,0,0.07); }
+  .card-type.assessment { color: #c8102e; border-color: #c8102e; background: rgba(200,16,46,0.07); }
+  .card-year { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; }
+  .card-title { font-family: 'DM Serif Display', serif; font-size: 1.25rem; line-height: 1.2; margin-bottom: 0.5rem; color: var(--accent2); }
+  .card-location { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.8rem; }
+  .card-desc { font-size: 0.84rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.2rem; }
+  .card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .tag { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; padding: 0.2rem 0.5rem; background: #eef2fc; border-radius: 3px; color: var(--accent2); }
+  .card-bottom { display: flex; align-items: center; justify-content: flex-end; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--border); }
+  .card-metric { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--accent); font-weight: 600; }
+  .year-divider { grid-column: 1 / -1; display: flex; align-items: center; gap: 1.5rem; padding: 1.2rem 2rem; background: linear-gradient(90deg, rgba(200,16,46,0.06), transparent); border-bottom: 1px solid var(--border); }
+  .year-divider-label { font-family: 'DM Serif Display', serif; font-size: 1.8rem; color: var(--accent); }
+  .year-divider-line { flex: 1; height: 1px; background: var(--border); }
+  .year-divider-count { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; }
+  .empty-state { display: none; grid-column: 1 / -1; padding: 5rem; text-align: center; font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--text-dim); letter-spacing: 0.1em; }
+  .about-section { padding: 6rem 5rem; border-top: 3px solid var(--accent2); background: linear-gradient(180deg, #fff 0%, #eef2fc 100%); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start; }
+  .about-label { font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+  .about-title { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); line-height: 1.2; margin-bottom: 1.5rem; color: var(--accent2); }
+  .about-text { font-size: 0.92rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; }
+  .edu-block { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+  .edu-item { padding: 1.2rem 1.4rem; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; border-left: 3px solid var(--accent); box-shadow: 0 2px 8px rgba(26,58,107,0.05); }
+  .edu-degree { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.3rem; color: var(--accent2); }
+  .edu-school { font-family: 'DM Mono', monospace; font-size: 0.68rem; color: var(--text-muted); letter-spacing: 0.06em; }
+  .edu-thesis { font-family: 'DM Mono', monospace; font-size: 0.65rem; color: var(--text-dim); margin-top: 0.3rem; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 16px rgba(26,58,107,0.07); }
+  .skill-item { padding: 1.4rem; background: #fff; }
+  .skill-name { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent2); margin-bottom: 0.5rem; }
+  .skill-bar-wrap { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .skill-bar { height: 100%; background: linear-gradient(90deg, var(--accent2), var(--accent)); border-radius: 2px; }
+  .certs { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .cert-badge { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; padding: 0.4rem 0.8rem; border: 1.5px solid var(--accent2); color: var(--accent2); border-radius: 4px; background: #fff; }
+  footer { border-top: 3px solid var(--accent); background: var(--accent2); padding: 2.5rem 5rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: 'DM Serif Display', serif; font-size: 1.1rem; color: rgba(255,255,255,0.9); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-link { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-link:hover { color: #fff; }
+  .footer-copy { font-family: 'DM Mono', monospace; font-size: 0.62rem; color: rgba(255,255,255,0.5); letter-spacing: 0.08em; }
+  /* ── INTERACTIVE MAP ── */
+  .hero-right {
+    position: relative;
+    border-left: 3px solid var(--accent);
+    overflow: hidden;
+    background: linear-gradient(135deg, #0f2040 0%, #0a1628 100%);
+    cursor: crosshair;
+  }
+  .map-svg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+  }
+  /* left-edge feather so map bleeds into hero-left */
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0; left: 0;
+    width: 60px;
+    background: linear-gradient(to right, rgba(26,58,107,0.35), transparent);
+    z-index: 2; pointer-events: none;
+  }
+  /* tooltip */
+  .map-tooltip {
+    position: absolute;
+    background: rgba(10,22,48,0.95);
+    border: 1px solid rgba(200,16,46,0.5);
+    border-radius: 6px;
+    padding: 0.7rem 1rem;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.18s;
+    min-width: 180px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+  .map-tooltip.visible { opacity: 1; }
+  .map-tooltip-country {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem; color: #fff;
+    margin-bottom: 0.2rem;
+  }
+  .map-tooltip-years {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem; letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 0.5rem;
+  }
+  .map-tooltip-role {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem; color: rgba(255,255,255,0.8);
+    line-height: 1.5;
+  }
+  /* animated arcs */
+  .map-arc {
+    fill: none;
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: arcDraw 1.8s ease forwards;
+  }
+  .map-arc-1 { animation-delay: 0.6s; }
+  .map-arc-2 { animation-delay: 1.0s; }
+  .map-arc-3 { animation-delay: 1.4s; }
+  @keyframes arcDraw { to { stroke-dashoffset: 0; } }
+  /* animated travel dot */
+  .travel-dot {
+    animation: travelDot 3s ease-in-out infinite;
+  }
+  .travel-dot-2 { animation-delay: 1s; }
+  .travel-dot-3 { animation-delay: 2s; }
+  @keyframes travelDot {
+    0% { opacity: 0; offset-distance: 0%; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; offset-distance: 100%; }
+  }
+  /* pin pulse rings */
+  @keyframes pinRing {
+    0%   { r: 8;  opacity: 0.7; }
+    100% { r: 22; opacity: 0; }
+  }
+  .pin-ring { animation: pinRing 2.2s ease-out infinite; }
+  .pin-ring-2 { animation-delay: 0.75s; }
+  .pin-ring-3 { animation-delay: 1.5s; }
+  /* land hover */
+  .land-active { transition: fill 0.25s; }
+  .land-active:hover { fill: #2e5080; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-left > * { opacity: 0; animation: fadeUp 0.7s ease forwards; }
+  .hero-left > *:nth-child(1) { animation-delay: 0.1s; }
+  .hero-left > *:nth-child(2) { animation-delay: 0.2s; }
+  .hero-left > *:nth-child(3) { animation-delay: 0.3s; }
+  .hero-left > *:nth-child(4) { animation-delay: 0.4s; }
+  .hero-left > *:nth-child(5) { animation-delay: 0.5s; }
+  @keyframes drawLine { from { stroke-dashoffset: 1000; } to { stroke-dashoffset: 0; } }
+  .draw-line { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 2s ease 0.5s forwards; }
+  @media (max-width: 900px) {
+    header { padding: 0 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { display: none; }
+    .hero-left { padding: 4rem 2rem; }
+    .projects-section, .about-section { padding: 4rem 2rem; }
+    .about-section { grid-template-columns: 1fr; gap: 3rem; }
+    footer { padding: 2rem; flex-direction: column; align-items: flex-start; }
+  }
+</style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-logo">CE.</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="mailto:your@email.com" class="btn btn-primary" style="padding:8px 20px;border-radius:3px;">Contact</a></li>
-  </ul>
-</nav>
+<header>
+  <div class="logo">S. Thapa / PE</div>
+  <nav>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="https://github.com" class="github-btn" target="_blank">
+      <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+  </nav>
+</header>
 
-<!-- HERO -->
-<section id="hero">
-  <!-- Blueprint grid handled by ::before -->
-
-  <!-- Decorative bridge-truss SVG -->
-  <svg class="hero-deco" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <rect x="0" y="350" width="500" height="6" fill="white"/>
-    <line x1="0" y1="350" x2="80" y2="100" stroke="white" stroke-width="4"/>
-    <line x1="500" y1="350" x2="420" y2="100" stroke="white" stroke-width="4"/>
-    <line x1="80" y1="100" x2="420" y2="100" stroke="white" stroke-width="4"/>
-    <line x1="80" y1="100" x2="170" y2="350" stroke="white" stroke-width="3"/>
-    <line x1="170" y1="350" x2="250" y2="100" stroke="white" stroke-width="3"/>
-    <line x1="250" y1="100" x2="330" y2="350" stroke="white" stroke-width="3"/>
-    <line x1="330" y1="350" x2="420" y2="100" stroke="white" stroke-width="3"/>
-    <line x1="80" y1="100" x2="250" y2="350" stroke="white" stroke-width="2" opacity="0.5"/>
-    <line x1="250" y1="100" x2="420" y2="350" stroke="white" stroke-width="2" opacity="0.5"/>
-    <circle cx="80" cy="100" r="8" fill="white"/>
-    <circle cx="420" cy="100" r="8" fill="white"/>
-    <circle cx="250" cy="100" r="8" fill="white"/>
-  </svg>
-
-  <div class="hero-content">
-    <span class="hero-eyebrow">Civil &amp; Structural Engineer</span>
-    <h1>Building <span>structures</span> that stand the test of time.</h1>
-    <p class="hero-sub">Passionate about delivering safe, sustainable, and innovative engineering solutions — from concept design to construction.</p>
-    <div class="hero-cta">
-      <a href="#projects" class="btn btn-primary">View My Work</a>
-      <a href="#about" class="btn btn-outline">About Me</a>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Structural Project Engineer · Louisville, KY</div>
+    <h1>Suraj<br><em>Thapa</em><br>PE</h1>
+    <p class="hero-sub">Structural Project Engineer at Cornerstone Engineering Inc. — specializing in water/wastewater infrastructure, seismic assessment and retrofit, and industrial facilities. 10+ years across Nepal, Thailand, and the USA.</p>
+    <div class="hero-contact">
+      <a href="mailto:suraj.t@cornerstone.com">suraj.t@cornerstone.com</a>
+      <a href="tel:+15027125611">+1 502-712-5611 (US)</a>
+      <span>2214 Plantside Dr., Louisville, KY 40299</span>
     </div>
     <div class="hero-stats">
-      <div>
-        <span class="stat-value">100+</span>
-        <span class="stat-label">Projects Completed</span>
-      </div>
-      <div>
-        <span class="stat-value">8+</span>
-        <span class="stat-label">Years Experience</span>
-      </div>
-      <div>
-        <span class="stat-value">3</span>
-        <span class="stat-label">Specialisations</span>
-      </div>
+      <div><div class="stat-val">10+</div><div class="stat-label">Yrs Experience</div></div>
+      <div><div class="stat-val">30+</div><div class="stat-label">Projects</div></div>
+      <div><div class="stat-val">3</div><div class="stat-label">Countries</div></div>
+    </div>
+  </div>
+  <div class="hero-right" id="mapHero">
+    <svg class="map-svg" id="mapSvg" viewBox="0 0 960 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="oceanGrad" cx="50%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#0e2247"/>
+          <stop offset="100%" stop-color="#070f1e"/>
+        </radialGradient>
+        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="4" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <filter id="glow-sm" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="2.5" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <!-- Gradient for left-edge blend -->
+        <linearGradient id="edgeFade" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#1a3a6b" stop-opacity="0.5"/>
+          <stop offset="15%" stop-color="#0a1628" stop-opacity="0"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Ocean -->
+      <rect width="960" height="600" fill="url(#oceanGrad)"/>
+
+      <!-- Subtle lat/lon grid -->
+      <g stroke="rgba(255,255,255,0.04)" stroke-width="0.5">
+        <line x1="0" y1="100" x2="960" y2="100"/>
+        <line x1="0" y1="200" x2="960" y2="200"/>
+        <line x1="0" y1="300" x2="960" y2="300"/>
+        <line x1="0" y1="400" x2="960" y2="400"/>
+        <line x1="0" y1="500" x2="960" y2="500"/>
+        <line x1="160" y1="0" x2="160" y2="600"/>
+        <line x1="320" y1="0" x2="320" y2="600"/>
+        <line x1="480" y1="0" x2="480" y2="600"/>
+        <line x1="640" y1="0" x2="640" y2="600"/>
+        <line x1="800" y1="0" x2="800" y2="600"/>
+      </g>
+      <!-- Equator -->
+      <line x1="0" y1="300" x2="960" y2="300" stroke="rgba(255,255,255,0.09)" stroke-width="0.8" stroke-dasharray="6,5"/>
+      <text x="8" y="297" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)" letter-spacing="1">EQ</text>
+
+      <!-- ══ CONTINENTS ══ -->
+      <!-- North America -->
+      <path class="land-active" d="M55,72 L95,65 L135,68 L168,75 L192,85 L205,100 L210,118 L208,140 L200,162 L190,180 L178,196 L162,205 L148,205 L132,196 L118,186 L104,178 L90,172 L78,178 L68,190 L58,204 L46,208 L36,200 L32,188 L36,172 L42,156 L46,138 L46,118 L50,98 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+      <!-- Alaska -->
+      <path class="land-active" d="M18,60 L42,54 L62,60 L68,72 L55,80 L36,78 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Canada -->
+      <path class="land-active" d="M50,45 L110,38 L180,40 L230,46 L252,58 L245,72 L220,78 L192,78 L165,74 L132,70 L98,66 L68,66 L52,58 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Greenland -->
+      <path class="land-active" d="M210,18 L248,15 L268,28 L262,48 L244,58 L222,54 L210,38 Z" fill="#182e52" stroke="rgba(100,160,255,0.15)" stroke-width="0.8"/>
+      <!-- Mexico + Central Am -->
+      <path class="land-active" d="M155,205 L170,210 L178,226 L168,244 L158,255 L150,260 L146,252 L150,238 L148,220 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Caribbean -->
+      <path class="land-active" d="M190,218 L202,214 L208,220 L200,226 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- South America -->
+      <path class="land-active" d="M172,260 L198,252 L218,260 L228,278 L234,300 L230,326 L220,350 L208,372 L196,390 L182,395 L168,384 L160,362 L156,336 L154,308 L156,282 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+
+      <!-- Europe (main) -->
+      <path class="land-active" d="M412,68 L432,64 L455,66 L472,72 L486,82 L490,94 L482,106 L470,114 L455,118 L440,115 L428,106 L416,96 L408,84 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+      <!-- Iberia -->
+      <path class="land-active" d="M398,108 L418,102 L428,112 L424,128 L412,134 L400,127 L396,116 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- UK -->
+      <path class="land-active" d="M408,74 L420,70 L426,78 L420,88 L408,86 L404,78 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Scandinavia -->
+      <path class="land-active" d="M444,46 L462,42 L476,50 L474,66 L462,74 L450,68 L442,56 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Italy -->
+      <path class="land-active" d="M452,116 L464,110 L474,120 L472,136 L462,145 L450,136 L446,124 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Balkans/Turkey -->
+      <path class="land-active" d="M476,116 L506,112 L524,120 L528,134 L516,144 L498,146 L482,138 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- Africa -->
+      <path class="land-active" d="M412,148 L458,140 L498,145 L516,162 L522,188 L520,218 L514,248 L506,272 L496,295 L484,316 L470,330 L455,336 L440,331 L426,316 L414,296 L404,272 L400,245 L400,218 L402,192 L406,168 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+      <!-- Madagascar -->
+      <path class="land-active" d="M510,302 L520,296 L526,310 L522,328 L512,324 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- Middle East -->
+      <path class="land-active" d="M522,130 L556,125 L572,134 L570,154 L555,164 L537,160 L524,148 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Arabian Peninsula -->
+      <path class="land-active" d="M538,158 L570,153 L585,167 L580,192 L565,208 L548,203 L537,188 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- Russia / Central Asia -->
+      <path class="land-active" d="M490,48 L555,40 L625,37 L692,40 L742,46 L768,55 L775,68 L758,78 L728,84 L695,87 L660,89 L628,88 L598,85 L568,80 L538,74 L510,66 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Siberia -->
+      <path class="land-active" d="M692,40 L752,30 L808,26 L852,32 L872,42 L865,55 L838,63 L806,65 L772,62 L742,57 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Far East Russia -->
+      <path class="land-active" d="M848,32 L898,24 L930,30 L932,46 L912,56 L880,59 L852,50 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- Indian Subcontinent (Nepal is in the north) -->
+      <path class="land-active" d="M590,140 L628,134 L652,144 L660,164 L658,186 L648,208 L634,220 L618,216 L604,200 L596,180 L594,158 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+      <!-- Nepal highlight belt -->
+      <path id="nepalRegion" d="M608,140 L636,136 L650,144 L646,156 L630,158 L614,150 Z" fill="#243d70" stroke="rgba(255,215,0,0.3)" stroke-width="0.8"/>
+
+      <!-- China/East Asia -->
+      <path class="land-active" d="M648,88 L715,84 L762,90 L782,102 L785,120 L777,140 L760,155 L738,162 L710,162 L682,155 L660,143 L645,128 L644,108 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+
+      <!-- SE Asia incl Thailand -->
+      <path class="land-active" d="M690,162 L726,155 L748,165 L752,184 L744,200 L728,207 L714,204 L704,190 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+      <!-- Thailand highlight -->
+      <path id="thaiRegion" d="M704,165 L722,160 L735,170 L732,185 L720,190 L707,183 Z" fill="#243d70" stroke="rgba(122,179,224,0.3)" stroke-width="0.8"/>
+      <!-- Malay/Indonesia -->
+      <path class="land-active" d="M718,204 L727,200 L733,215 L726,232 L715,230 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <path class="land-active" d="M704,250 L745,242 L775,246 L782,254 L758,260 L726,262 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- Japan -->
+      <path class="land-active" d="M800,98 L812,90 L824,94 L826,110 L818,118 L806,113 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+      <!-- Korea -->
+      <path class="land-active" d="M776,108 L787,104 L795,112 L790,124 L778,125 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- Australia -->
+      <path class="land-active" d="M748,315 L804,306 L850,312 L878,326 L888,350 L884,376 L868,392 L844,400 L816,395 L790,380 L768,360 L752,336 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.25)" stroke-width="0.8"/>
+      <!-- NZ -->
+      <path class="land-active" d="M900,374 L912,368 L918,382 L910,394 L900,388 Z" fill="#1e3d6e" stroke="rgba(100,160,255,0.2)" stroke-width="0.8"/>
+
+      <!-- ══ USA HIGHLIGHT ══ -->
+      <path id="usaRegion" d="M55,120 L145,113 L205,116 L215,130 L210,155 L198,180 L185,200 L162,200 L140,190 L115,178 L90,170 L70,174 L58,162 L52,144 Z" fill="#243d70" stroke="rgba(200,16,46,0.35)" stroke-width="0.9"/>
+
+      <!-- ══ ARC CONNECTIONS ══ -->
+      <!-- USA → Nepal (great circle arc) -->
+      <path class="map-arc map-arc-1" d="M148,162 C300,60 480,50 620,148" stroke="#ffd700" stroke-width="1.4" stroke-dasharray="6,3" opacity="0.6"/>
+      <!-- Nepal → Thailand -->
+      <path class="map-arc map-arc-2" d="M620,148 C650,130 678,140 716,174" stroke="#7ab3e0" stroke-width="1.4" stroke-dasharray="6,3" opacity="0.6"/>
+      <!-- USA → Thailand (long arc through south) -->
+      <path class="map-arc map-arc-3" d="M148,162 C280,380 560,360 716,174" stroke="rgba(200,16,46,0.45)" stroke-width="1" stroke-dasharray="4,4" opacity="0.4"/>
+
+      <!-- ══ ANIMATED TRAVEL DOTS ══ -->
+      <circle r="3" fill="#ffd700" opacity="0" filter="url(#glow-sm)">
+        <animateMotion dur="4s" repeatCount="indefinite" begin="1.4s">
+          <mpath href="#arc1path"/>
+        </animateMotion>
+        <animate attributeName="opacity" values="0;0;1;1;1;0" keyTimes="0;0.05;0.15;0.85;0.95;1" dur="4s" repeatCount="indefinite" begin="1.4s"/>
+      </circle>
+      <path id="arc1path" d="M148,162 C300,60 480,50 620,148" fill="none" stroke="none"/>
+
+      <circle r="2.5" fill="#7ab3e0" opacity="0" filter="url(#glow-sm)">
+        <animateMotion dur="2.5s" repeatCount="indefinite" begin="2s">
+          <mpath href="#arc2path"/>
+        </animateMotion>
+        <animate attributeName="opacity" values="0;0;1;1;1;0" keyTimes="0;0.05;0.15;0.85;0.95;1" dur="2.5s" repeatCount="indefinite" begin="2s"/>
+      </circle>
+      <path id="arc2path" d="M620,148 C650,130 678,140 716,174" fill="none" stroke="none"/>
+
+      <!-- ══ LOCATION PINS ══ -->
+
+      <!-- USA — Louisville KY approx -->
+      <g id="pin-usa" style="cursor:pointer">
+        <circle cx="148" cy="162" r="22" fill="rgba(200,16,46,0)" stroke="rgba(200,16,46,0.6)" stroke-width="1" class="pin-ring"/>
+        <circle cx="148" cy="162" r="22" fill="rgba(200,16,46,0)" stroke="rgba(200,16,46,0.4)" stroke-width="1" class="pin-ring pin-ring-2"/>
+        <circle cx="148" cy="162" r="10" fill="rgba(200,16,46,0.2)"/>
+        <circle cx="148" cy="162" r="6" fill="#c8102e" filter="url(#glow)"/>
+        <circle cx="148" cy="162" r="3" fill="#fff"/>
+      </g>
+
+      <!-- Nepal — Kathmandu approx -->
+      <g id="pin-nepal" style="cursor:pointer">
+        <circle cx="620" cy="148" r="20" fill="rgba(255,215,0,0)" stroke="rgba(255,215,0,0.6)" stroke-width="1" class="pin-ring pin-ring-2"/>
+        <circle cx="620" cy="148" r="20" fill="rgba(255,215,0,0)" stroke="rgba(255,215,0,0.3)" stroke-width="1" class="pin-ring pin-ring-3"/>
+        <circle cx="620" cy="148" r="9" fill="rgba(255,215,0,0.2)"/>
+        <circle cx="620" cy="148" r="5.5" fill="#ffd700" filter="url(#glow)"/>
+        <circle cx="620" cy="148" r="2.5" fill="#fff"/>
+      </g>
+
+      <!-- Thailand — Bangkok approx -->
+      <g id="pin-thailand" style="cursor:pointer">
+        <circle cx="716" cy="174" r="18" fill="rgba(122,179,224,0)" stroke="rgba(122,179,224,0.6)" stroke-width="1" class="pin-ring pin-ring-3"/>
+        <circle cx="716" cy="174" r="18" fill="rgba(122,179,224,0)" stroke="rgba(122,179,224,0.35)" stroke-width="1" class="pin-ring"/>
+        <circle cx="716" cy="174" r="8" fill="rgba(122,179,224,0.2)"/>
+        <circle cx="716" cy="174" r="5" fill="#7ab3e0" filter="url(#glow)"/>
+        <circle cx="716" cy="174" r="2.5" fill="#fff"/>
+      </g>
+
+      <!-- Pin labels (always visible, subtle) -->
+      <text x="148" y="146" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" font-weight="bold" fill="rgba(255,255,255,0.85)" letter-spacing="0.5">USA</text>
+      <text x="620" y="132" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" font-weight="bold" fill="rgba(255,255,255,0.85)" letter-spacing="0.5">NEPAL</text>
+      <text x="716" y="158" text-anchor="middle" font-family="DM Mono,monospace" font-size="8.5" font-weight="bold" fill="rgba(255,255,255,0.85)" letter-spacing="0.5">THAILAND</text>
+
+      <!-- Left-edge blend overlay -->
+      <rect width="80" height="600" fill="url(#edgeFade)"/>
+
+      <!-- Bottom label -->
+      <text x="16" y="585" font-family="DM Mono,monospace" font-size="7" fill="rgba(255,255,255,0.2)" letter-spacing="2">WORK EXPERIENCE — 3 COUNTRIES</text>
+    </svg>
+
+    <!-- Interactive tooltip -->
+    <div class="map-tooltip" id="mapTooltip">
+      <div class="map-tooltip-country" id="ttCountry"></div>
+      <div class="map-tooltip-years" id="ttYears"></div>
+      <div class="map-tooltip-role" id="ttRole"></div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-grid fade-in">
-    <div class="about-img-wrap">
-      <div class="about-img-placeholder">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-          <circle cx="40" cy="26" r="18" fill="white"/>
-          <path d="M4 74c0-19.882 16.118-36 36-36s36 16.118 36 36" fill="white"/>
-        </svg>
-        <p>Your Photo</p>
-      </div>
-      <div class="about-accent"></div>
+<section class="projects-section" id="projects">
+  <div class="section-header">
+    <div class="section-title"><span>// Portfolio</span>Selected Work</div>
+    <div class="year-filter">
+      <button class="year-btn active" data-year="all" onclick="filterYear('all')">All</button>
+      <button class="year-btn" data-year="2025" onclick="filterYear('2025')">2025</button>
+      <button class="year-btn" data-year="2024" onclick="filterYear('2024')">2024</button>
+      <button class="year-btn" data-year="2023" onclick="filterYear('2023')">2023</button>
+      <button class="year-btn" data-year="2022" onclick="filterYear('2022')">2022</button>
+      <button class="year-btn" data-year="pre2022" onclick="filterYear('pre2022')">Pre-2022</button>
     </div>
-    <div class="about-text">
-      <div class="section-header">
-        <span class="section-tag">About Me</span>
-        <h2>Driven by precision, guided by purpose.</h2>
-      </div>
-      <p>Hello! I'm <strong>Suraj Thapa</strong>, a Civil & Structural Engineer with a strong foundation in analysis, design, and project delivery. I thrive at the intersection of technical rigour and real-world problem solving.</p>
-      <p>My work spans residential, commercial, and infrastructure projects — always with a commitment to safety, sustainability, and structural integrity. I approach every challenge with methodical thinking and an eye for detail.</p>
-      <p>I hold a degree in Civil Engineering from <strong>Asian Institute of Technology</strong> and am a member of <strong>NCEES</strong>.</p>
-      <div class="about-highlights">
-        <div class="highlight-item"><div class="highlight-dot"></div><span>Structural Analysis &amp; Design</span></div>
-        <div class="highlight-item"><div class="highlight-dot"></div><span>Project Management</span></div>
-        <div class="highlight-item"><div class="highlight-dot"></div><span>Sustainable Engineering</span></div>
-        <div class="highlight-item"><div class="highlight-dot"></div><span>BIM &amp; Digital Tools</span></div>
-      </div>
+  </div>
+  <div class="stats-bar">
+    Showing <strong id="countDisplay">22</strong> projects &nbsp;·&nbsp;
+    CEI (2023–Present) · ESS (2019–2023) · MIN (2015–2019) &nbsp;·&nbsp;
+    Year: <strong id="yearDisplay">All years</strong>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid">
+
+    <!-- 2025 -->
+    <div class="year-divider" data-year-div="2025">
+      <div class="year-divider-label">2025</div><div class="year-divider-line"></div>
+      <div class="year-divider-count">2 projects</div>
     </div>
+
+    <div class="project-card" data-year="2025">
+      <div class="card-top"><span class="card-type water">Water/Civil</span><span class="card-year">Jul 2025–Present</span></div>
+      <div class="card-title">Beargrass Creek Pump Station</div>
+      <div class="card-location">📍 Louisville, KY · MSD</div>
+      <div class="card-desc">Second largest pump station in the region during design. Reviewed existing architectural and structural drawings, built Risa-3D analytical model, and evaluated capacity of existing members vs. additional demands from pump and substation upgrade.</div>
+      <div class="card-tags"><span class="tag">Risa-3D</span><span class="tag">Pump Station</span><span class="tag">Capacity Eval</span><span class="tag">MSD</span></div>
+      <div class="card-bottom"><div class="card-metric">⚡ 2nd Largest Pump Station</div></div>
+    </div>
+
+    <div class="project-card" data-year="2025">
+      <div class="card-top"><span class="card-type civic">Civic/Navy</span><span class="card-year">Dec 2024–Jun 2025</span></div>
+      <div class="card-title">Kings Bay Railing — NAVFAC</div>
+      <div class="card-location">📍 Kings Bay, Georgia · NAVFAC</div>
+      <div class="card-desc">Public Navy facilities railing analysis and design for multiple heights. Wave screen analysis for design wind speed and wave height including marine growth effects. Detailed specifications prepared using Specs Intact.</div>
+      <div class="card-tags"><span class="tag">NAVFAC</span><span class="tag">Railing Design</span><span class="tag">Wave Analysis</span><span class="tag">Specs Intact</span></div>
+      <div class="card-bottom"><div class="card-metric">✦ Federal / Navy</div></div>
+    </div>
+
+    <!-- 2024 -->
+    <div class="year-divider" data-year-div="2024">
+      <div class="year-divider-label">2024</div><div class="year-divider-line"></div>
+      <div class="year-divider-count">7 projects</div>
+    </div>
+
+    <div class="project-card" data-year="2024">
+      <div class="card-top"><span class="card-type water">Water/Civil</span><span class="card-year">Jul 2024–Apr 2025</span></div>
+      <div class="card-title">Northern Ditch Pump Station</div>
+      <div class="card-location">📍 Louisville, KY · MSD</div>
+      <div class="card-desc">Underground pump station reaching 28 ft depth with 3 ft base bearing slab. Designed beams, slabs, and footings in steel, concrete, and aluminium. Calculated hydraulic forces from water flow. Prepared manual and FEM calculation models and structural sketches.</div>
+      <div class="card-tags"><span class="tag">Underground Structure</span><span class="tag">28 ft Depth</span><span class="tag">Hydraulic Forces</span><span class="tag">Multi-material</span></div>
+      <div class="card-bottom"><div class="card-metric">▼ 28 ft Deep</div></div>
+    </div>
+
+    <div class="project-card" data-year="2024">
+      <div class="card-top"><span class="card-type civic">Civic</span><span class="card-year">Oct 2024–Jul 2025</span></div>
+      <div class="card-title">Haven Church — PEB Building</div>
+      <div class="card-location">📍 Louisville, KY · Haven Recovery Center</div>
+      <div class="card-desc">Wind analysis of pre-engineered building using Risa-3D. Foundation design and slab-on-grade calculations. Manual calculations for LGS wall from second floor. Stripe footing design to transfer load to foundation.</div>
+      <div class="card-tags"><span class="tag">Risa-3D</span><span class="tag">PEB</span><span class="tag">LGS Wall</span><span class="tag">Foundation Design</span></div>
+      <div class="card-bottom"><div class="card-metric">■ PEB + LGS</div></div>
+    </div>
+
+    <div class="project-card" data-year="2024">
+      <div class="card-top"><span class="card-type water">Water/Civil</span><span class="card-year">Oct 2023–Jun 2024</span></div>
+      <div class="card-title">Cedar Creek WQTC Solids Dewatering</div>
+      <div class="card-location">📍 Louisville, KY · MSD</div>
+      <div class="card-desc">Step foundation with irregular PEB roof. Bridge crane and sludge/cake handling loads. Designed liquid tanks per ACI 350. Crane framing analysis for pendant-operated cranes. Lateral wind load analysis for pitched roof. Prepared OPCC at 30/60/90% milestones.</div>
+      <div class="card-tags"><span class="tag">ACI 350</span><span class="tag">PEB</span><span class="tag">Crane Design</span><span class="tag">OPCC</span></div>
+      <div class="card-bottom"><div class="card-metric">⚙ Water Treatment</div></div>
+    </div>
+
+    <div class="project-card" data-year="2024">
+      <div class="card-top"><span class="card-type water">Water/Civil</span><span class="card-year">Apr–Jun 2024</span></div>
+      <div class="card-title">LMSD MFWQTC Biosolids — Area 5 &amp; 30</div>
+      <div class="card-location">📍 Memphis, TN · Walsh / Stantec</div>
+      <div class="card-desc">Reviewed PEB superstructure reactions. FEM model for pipe load forces applied to vertical walls and foundation. Formatted plate outputs for flexural and shear reinforcing. Risa-3D model per existing drawings. Pipe thrust block design and overall stability check.</div>
+      <div class="card-tags"><span class="tag">FEM</span><span class="tag">Risa-3D</span><span class="tag">Pipe Loads</span><span class="tag">Biosolids</span></div>
+      <div class="card-bottom"><div class="card-metric">■ Biosolids Facility</div></div>
+    </div>
+
+    <div class="project-card" data-year="2024">
+      <div class="card-top"><span class="card-type retrofit">Repair</span><span class="card-year">Jul–Sep 2024</span></div>
+      <div class="card-title">Bells Lane Odor Control &amp; Slab Repair</div>
+      <div class="card-location">📍 Louisville, KY · HDR &amp; MSD</div>
+      <div class="card-desc">EQ basin upgrade for auto-cleaning via compartmentalization. Damage assessment for walkway; repair method based on crack width. Retaining wall analysis, continuous footing design, and helical pile alternative. Bi-weekly HDR coordination. Full plan and section drawings.</div>
+      <div class="card-tags"><span class="tag">Retaining Wall</span><span class="tag">Helical Piles</span><span class="tag">Damage Assessment</span><span class="tag">Repair Design</span></div>
+      <div class="card-bottom"><div class="card-metric">✦ Multi-discipline</div></div>
+    </div>
+
+    <div class="project-card" data-year="2024">
+      <div class="card-top"><span class="card-type water">Water/Civil</span><span class="card-year">Mar–Apr 2024</span></div>
+      <div class="card-title">Massman Dr. Junction Box</div>
+      <div class="card-location">📍 Nashville, TN · Metro Water Services</div>
+      <div class="card-desc">Underground junction box numerical model in Risa-3D. Analysis and design of structural wall and slab components per ACI 350 requirements. Prepared CAD drawings and coordinated with client.</div>
+      <div class="card-tags"><span class="tag">ACI 350</span><span class="tag">Risa-3D</span><span class="tag">Underground Structure</span></div>
+      <div class="card-bottom"><div class="card-metric">▼ Underground</div></div>
+    </div>
+
+    <div class="project-card" data-year="2024">
+      <div class="card-top"><span class="card-type civic">Civic</span><span class="card-year">Dec 2023–Mar 2024</span></div>
+      <div class="card-title">Simmons Stadium Renovation</div>
+      <div class="card-location">📍 Memphis, TN · City of Memphis Parks Division</div>
+      <div class="card-desc">Renovation and rebuild of west and east stadium blocks. Designed deep grade beams and diaphragm slab for lateral load transfer from superstructure (Walter P Moore). New pile layout between existing piles. Phase II wind analysis for rooftop floodlight structures.</div>
+      <div class="card-tags"><span class="tag">Deep Foundations</span><span class="tag">Grade Beams</span><span class="tag">Pile Design</span><span class="tag">Stadium</span></div>
+      <div class="card-bottom"><div class="card-metric">⬆ Stadium Renovation</div></div>
+    </div>
+
+    <!-- 2023 -->
+    <div class="year-divider" data-year-div="2023">
+      <div class="year-divider-label">2023</div><div class="year-divider-line"></div>
+      <div class="year-divider-count">5 projects</div>
+    </div>
+
+    <div class="project-card" data-year="2023">
+      <div class="card-top"><span class="card-type industrial">Industrial</span><span class="card-year">Jul–Nov 2023</span></div>
+      <div class="card-title">Biosolids Drying Facility</div>
+      <div class="card-location">📍 Nashville, TN · Metro Water / Brown &amp; Caldwell</div>
+      <div class="card-desc">220×150 ft facility with 64 ft high precast panel walls and H-piles. Designed one-way slabs for uniform and AASHTO live loads, grade beams, and retaining structures for basement. Wind analysis of periphery machinery per ASCE 7-16. Recommended two-way slab with drop panels.</div>
+      <div class="card-tags"><span class="tag">Precast Panels 64ft</span><span class="tag">H-Piles</span><span class="tag">AASHTO LL</span><span class="tag">ASCE 7-16</span></div>
+      <div class="card-bottom"><div class="card-metric">■ 33,000 sq ft</div></div>
+    </div>
+
+    <div class="project-card" data-year="2023">
+      <div class="card-top"><span class="card-type industrial">Industrial</span><span class="card-year">Nov–Dec 2023</span></div>
+      <div class="card-title">Freeport Drive Industrial Building</div>
+      <div class="card-location">📍 Louisville, KY · Delcour Industrial</div>
+      <div class="card-desc">Capacity evaluation of existing 300×300 ft grade slab for new aisle arrangement. Punching and bearing check of base plate. Prepared CAD drawings for structural modifications.</div>
+      <div class="card-tags"><span class="tag">Slab Capacity</span><span class="tag">Punching Shear</span><span class="tag">Base Plate</span></div>
+      <div class="card-bottom"><div class="card-metric">■ 90,000 sq ft</div></div>
+    </div>
+
+    <div class="project-card" data-year="2023">
+      <div class="card-top"><span class="card-type civic">Civic</span><span class="card-year">Nov–Dec 2023</span></div>
+      <div class="card-title">Apache Retaining Wall</div>
+      <div class="card-location">📍 Nashville, TN · NDOT Sidewalk Program</div>
+      <div class="card-desc">Reviewed civil topographic drawings. Designed and detailed retaining structures for NDOT sidewalk program. Prepared complete CAD working drawings with general notes.</div>
+      <div class="card-tags"><span class="tag">Retaining Wall</span><span class="tag">Civil/Topo</span><span class="tag">NDOT</span></div>
+      <div class="card-bottom"><div class="card-metric">◆ NDOT</div></div>
+    </div>
+
+    <div class="project-card" data-year="2023">
+      <div class="card-top"><span class="card-type civic">Civic</span><span class="card-year">May 2024</span></div>
+      <div class="card-title">Ministry Block — BLOC Ministries</div>
+      <div class="card-location">📍 Louisville, KY · BLOC Ministries</div>
+      <div class="card-desc">Masonry and timber structure renovation. Reviewed existing drawings and evaluated masonry walls for added openings and timber joists for added loading. Coordinated CAD drawings with HVAC engineer and architect.</div>
+      <div class="card-tags"><span class="tag">Masonry</span><span class="tag">Timber Joist</span><span class="tag">Renovation</span></div>
+      <div class="card-bottom"><div class="card-metric">◆ Renovation</div></div>
+    </div>
+
+    <div class="project-card" data-year="2023">
+      <div class="card-top"><span class="card-type water">Water/Civil</span><span class="card-year">Jul–Dec 2024</span></div>
+      <div class="card-title">DRG RAS Pump Upgrade</div>
+      <div class="card-location">📍 Louisville, KY · MSD</div>
+      <div class="card-desc">Analyzed existing slab capacity for pump upgrade loading. Prepared strengthening options for added pump loads and vehicular loading. Connection design of added structural members.</div>
+      <div class="card-tags"><span class="tag">Slab Capacity</span><span class="tag">Pump Upgrade</span><span class="tag">Strengthening</span></div>
+      <div class="card-bottom"><div class="card-metric">⚡ Pump Upgrade</div></div>
+    </div>
+
+    <!-- 2022 -->
+    <div class="year-divider" data-year-div="2022">
+      <div class="year-divider-label">2022</div><div class="year-divider-line"></div>
+      <div class="year-divider-count">2 projects</div>
+    </div>
+
+    <div class="project-card" data-year="2022">
+      <div class="card-top"><span class="card-type assessment">Seismic</span><span class="card-year">ESS · 2022</span></div>
+      <div class="card-title">US Embassy Phora Compound — 17 Facilities</div>
+      <div class="card-location">📍 Kathmandu, Nepal · US Embassy Nepal</div>
+      <div class="card-desc">Team Leader for detailed seismic assessment and retrofit design of 17 facilities. Managed manpower planning, site activities, and direct OBO Washington D.C. meetings for Phase I and Phase II reports. Compiled full summary covering 24 public facilities with ETABS models.</div>
+      <div class="card-tags"><span class="tag">Team Leader</span><span class="tag">ETABS</span><span class="tag">Seismic Assessment</span><span class="tag">17 Facilities</span></div>
+      <div class="card-bottom"><div class="card-metric">✦ 17 Buildings</div></div>
+    </div>
+
+    <div class="project-card" data-year="2022">
+      <div class="card-top"><span class="card-type industrial">Healthcare</span><span class="card-year">ESS · 2022</span></div>
+      <div class="card-title">Sanjeevani 500-Bed Hospital, Dang</div>
+      <div class="card-location">📍 Dang, Nepal · Sanjeevani Group</div>
+      <div class="card-desc">Design Leader for 9-block hospital complex — 7,431 m² plinth area, G+4 floors in RCC and steel. Reviewed structural models and led design/drafting coordination. AAC block case study for partition load optimization achieved overall economic efficiency.</div>
+      <div class="card-tags"><span class="tag">Design Leader</span><span class="tag">9 Blocks</span><span class="tag">RCC+Steel</span><span class="tag">AAC Blocks</span></div>
+      <div class="card-bottom"><div class="card-metric">💰 $9.2M Budget</div></div>
+    </div>
+
+    <!-- Pre-2022 -->
+    <div class="year-divider" data-year-div="pre2022">
+      <div class="year-divider-label">Pre-2022</div><div class="year-divider-line"></div>
+      <div class="year-divider-count">6 key projects</div>
+    </div>
+
+    <div class="project-card" data-year="pre2022">
+      <div class="card-top"><span class="card-type industrial">Industrial</span><span class="card-year">MIN · 2019</span></div>
+      <div class="card-title">City of Dream — 64m Atrium Truss</div>
+      <div class="card-location">📍 Maharajgunj, Nepal · COD</div>
+      <div class="card-desc">Largest steel structure of its type in Nepal. Designed 64m atrium cover truss for 47 m/s wind speed. AISC and IS steel connection design. Vibration analysis of composite concrete. First travelator ever installed between floors in Nepal.</div>
+      <div class="card-tags"><span class="tag">64m Truss</span><span class="tag">AISC</span><span class="tag">ETABS</span><span class="tag">Wind 47m/s</span></div>
+      <div class="card-bottom"><div class="card-metric">⬆ 64m Span</div></div>
+    </div>
+
+    <div class="project-card" data-year="pre2022">
+      <div class="card-top"><span class="card-type retrofit">Retrofit</span><span class="card-year">MIN · 2019</span></div>
+      <div class="card-title">Gaddi Baithak Gateway — Seismic Retrofit</div>
+      <div class="card-location">📍 Basantapur, Nepal · GoN / DoA</div>
+      <div class="card-desc">Seismic strengthening of historic gateway using traditional materials. Conducted site sampling and lab tests. ETABS analysis with local site effect and code-based spectrum. Reviewed steel connection detailing in drafting drawings.</div>
+      <div class="card-tags"><span class="tag">Historic Structure</span><span class="tag">Traditional Materials</span><span class="tag">Local Site Effect</span></div>
+      <div class="card-bottom"><div class="card-metric">✦ Heritage Structure</div></div>
+    </div>
+
+    <div class="project-card" data-year="pre2022">
+      <div class="card-top"><span class="card-type assessment">Seismic</span><span class="card-year">ESS</span></div>
+      <div class="card-title">Downtown Housing Seismic Assessment</div>
+      <div class="card-location">📍 Dhapakhel, Nepal · Downtown Housing</div>
+      <div class="card-desc">Basement + G + 14 storeys. NDT for material verification. SAP2000 and Perform-3D nonlinear capacity assessment. Hinge modelling per ASCE 41-13. Regular Arup International collaboration. Full seismic assessment report with rectification measures.</div>
+      <div class="card-tags"><span class="tag">Perform-3D</span><span class="tag">ASCE 41-13</span><span class="tag">Nonlinear</span><span class="tag">Arup Collab</span></div>
+      <div class="card-bottom"><div class="card-metric">▲ 14 Storeys</div></div>
+    </div>
+
+    <div class="project-card" data-year="pre2022">
+      <div class="card-top"><span class="card-type industrial">Healthcare</span><span class="card-year">ESS</span></div>
+      <div class="card-title">Nobel Cancer Hospital</div>
+      <div class="card-location">📍 Biratnagar, Nepal · Nobel Hospital</div>
+      <div class="card-desc">150/200-bed hospital featuring 3000mm thick radiation decay concrete shear walls — first of its kind in Nepal. Coordinated with VARIAN India for radiation shielding. Numerical analysis, stakeholder discussions, and periodic construction supervision.</div>
+      <div class="card-tags"><span class="tag">Radiation Shielding</span><span class="tag">3000mm Shear Wall</span><span class="tag">Healthcare</span></div>
+      <div class="card-bottom"><div class="card-metric">💰 $2.47M</div></div>
+    </div>
+
+    <div class="project-card" data-year="pre2022">
+      <div class="card-top"><span class="card-type retrofit">Retrofit</span><span class="card-year">ESS</span></div>
+      <div class="card-title">KMC Hospital — Base Isolation &amp; NSM FRP</div>
+      <div class="card-location">📍 Sinamangal, Nepal · KMC Hospital</div>
+      <div class="card-desc">Seismic retrofit using base isolation (Doshin Rubber Malaysia) and Near Surface Mounted FRP rebars for a 46,184 sq ft hospital. ETABS and SAFE2000 models. NSM rebar adopted on site due to property line constraints ruling out base isolation.</div>
+      <div class="card-tags"><span class="tag">Base Isolation</span><span class="tag">NSM FRP</span><span class="tag">ETABS/SAFE</span><span class="tag">Healthcare</span></div>
+      <div class="card-bottom"><div class="card-metric">💰 $0.44M</div></div>
+    </div>
+
+    <div class="project-card" data-year="pre2022">
+      <div class="card-top"><span class="card-type residential">Residential</span><span class="card-year">ESS</span></div>
+      <div class="card-title">CG Hills Premium — 60 Houses &amp; Retaining Walls</div>
+      <div class="card-location">📍 Bhainsipati, Nepal · CG Hills</div>
+      <div class="card-desc">Team Leader for design and review of 60 houses across 4 typologies plus 8m perimeter retaining walls (493,750 sq ft total). ETABS, SAP2000, and SAFE2000 models. Retaining wall in SAP2000 and Mathcad. Third-party soil consultant coordination.</div>
+      <div class="card-tags"><span class="tag">Team Leader</span><span class="tag">60 Houses</span><span class="tag">8m Retaining Wall</span><span class="tag">SAP2000</span></div>
+      <div class="card-bottom"><div class="card-metric">💰 $18.33M</div></div>
+    </div>
+
+    <div class="empty-state" id="emptyState">// No projects found for selected year</div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-header fade-in" style="text-align:center;max-width:560px;margin:0 auto 3.5rem;">
-    <span class="section-tag">Expertise</span>
-    <h2>Technical Skills</h2>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-card fade-in">
-      <div class="skill-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8973a" stroke-width="2">
-          <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
-        </svg>
-      </div>
-      <h3>Structural Design</h3>
-      <ul class="skill-list">
-        <li>Eurocode Design</li><li>RC Structures</li><li>Steel Frames</li>
-        <li>Foundations</li><li>Load Analysis</li><li>Retaining Walls</li>
-      </ul>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8973a" stroke-width="2">
-          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-        </svg>
-      </div>
-      <h3>Analysis Software</h3>
-      <ul class="skill-list">
-        <li>ETABS</li><li>SAP2000</li><li>STAAD.Pro</li>
-        <li>AutoCAD</li><li>Revit</li><li>MATLAB</li>
-      </ul>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8973a" stroke-width="2">
-          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-      </div>
-      <h3>Civil Engineering</h3>
-      <ul class="skill-list">
-        <li>Highway Design</li><li>Drainage</li><li>Geotechnics</li>
-        <li>Site Investigation</li><li>Earthworks</li>
-      </ul>
-    </div>
-    <div class="skill-card fade-in">
-      <div class="skill-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#c8973a" stroke-width="2">
-          <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-        </svg>
-      </div>
-      <h3>Project Delivery</h3>
-      <ul class="skill-list">
-        <li>CDM Regulations</li><li>NEC / JCT Contracts</li><li>BIM Level 2</li>
-        <li>Risk Assessment</li><li>Report Writing</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="section-header fade-in">
-    <span class="section-tag">Portfolio</span>
-    <h2>Featured Projects</h2>
-  </div>
-  <div class="projects-grid">
-
-    <!-- Project 1 -->
-    <div class="project-card fade-in">
-      <div class="project-thumb">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <rect x="10" y="80" width="100" height="8" fill="white"/>
-          <rect x="20" y="40" width="12" height="40" fill="white"/>
-          <rect x="88" y="40" width="12" height="40" fill="white"/>
-          <path d="M10 80 L60 20 L110 80" stroke="white" stroke-width="4" fill="none"/>
-          <line x1="40" y1="80" x2="60" y2="45" stroke="white" stroke-width="2"/>
-          <line x1="80" y1="80" x2="60" y2="45" stroke="white" stroke-width="2"/>
-        </svg>
-        <span class="project-thumb-label">Bridge Design</span>
-      </div>
-      <div class="project-body">
-        <h3>Pedestrian Cable-Stayed Bridge</h3>
-        <p>Designed a 60m single-span cable-stayed pedestrian bridge over a river crossing, including full structural analysis and Eurocode compliance checks.</p>
-        <div class="project-tags">
-          <span>ETABS</span><span>Eurocode 1</span><span>Steel</span><span>Revit</span>
-        </div>
-      </div>
-      <div class="project-footer">
-        <a class="project-link" href="#">View on GitHub <span>→</span></a>
-        <span style="font-size:0.75rem;color:var(--muted);">2024</span>
-      </div>
-    </div>
-
-    <!-- Project 2 -->
-    <div class="project-card fade-in">
-      <div class="project-thumb" style="background: linear-gradient(135deg,#1a2f45,#2a4a6b);">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <rect x="15" y="30" width="90" height="70" rx="2" fill="white"/>
-          <rect x="25" y="20" width="70" height="12" fill="white" opacity="0.6"/>
-          <rect x="35" y="10" width="50" height="12" fill="white" opacity="0.3"/>
-          <line x1="15" y1="60" x2="105" y2="60" stroke="#1b3a5c" stroke-width="2"/>
-          <line x1="15" y1="75" x2="105" y2="75" stroke="#1b3a5c" stroke-width="2"/>
-          <rect x="45" y="75" width="30" height="25" fill="#1b3a5c" rx="1"/>
-        </svg>
-        <span class="project-thumb-label">High Rise</span>
-      </div>
-      <div class="project-body">
-        <h3>12-Storey RC Frame Building</h3>
-        <p>Comprehensive design of a reinforced concrete frame residential building, including lateral load analysis, column and slab design, and foundation sizing.</p>
-        <div class="project-tags">
-          <span>SAP2000</span><span>RC Design</span><span>EC2</span><span>AutoCAD</span>
-        </div>
-      </div>
-      <div class="project-footer">
-        <a class="project-link" href="#">View on GitHub <span>→</span></a>
-        <span style="font-size:0.75rem;color:var(--muted);">2023</span>
-      </div>
-    </div>
-
-    <!-- Project 3 -->
-    <div class="project-card fade-in">
-      <div class="project-thumb" style="background: linear-gradient(135deg,#192e20,#1f4a30);">
-        <svg width="120" height="120" viewBox="0 0 120 120" fill="none" aria-hidden="true">
-          <path d="M10 100 Q30 40 60 30 Q90 40 110 100" stroke="white" stroke-width="3" fill="none"/>
-          <line x1="10" y1="100" x2="110" y2="100" stroke="white" stroke-width="4"/>
-          <line x1="40" y1="100" x2="40" y2="72" stroke="white" stroke-width="2"/>
-          <line x1="60" y1="100" x2="60" y2="62" stroke="white" stroke-width="2"/>
-          <line x1="80" y1="100" x2="80" y2="72" stroke="white" stroke-width="2"/>
-        </svg>
-        <span class="project-thumb-label">Infrastructure</span>
-      </div>
-      <div class="project-body">
-        <h3>Road & Drainage Design</h3>
-        <p>Highway design for a 2.4km residential access road, including carriageway geometry, storm drainage network, and surface water management strategy.</p>
-        <div class="project-tags">
-          <span>Civil 3D</span><span>MicroDrainage</span><span>DMRB</span><span>SUDS</span>
-        </div>
-      </div>
-      <div class="project-footer">
-        <a class="project-link" href="#">View on GitHub <span>→</span></a>
-        <span style="font-size:0.75rem;color:var(--muted);">2023</span>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
+<section class="about-section" id="about">
   <div>
-    <div class="footer-name">Suraj Thapa <span>CE.</span></div>
-    <div class="footer-copy">© 2025 · Civil & Structural Engineer</div>
+    <div class="about-label">// About</div>
+    <h2 class="about-title">Structural Engineering<br><em style="font-family:'DM Serif Display',serif;font-style:italic;color:var(--accent)">Across Three Continents</em></h2>
+    <p class="about-text">I'm Suraj Thapa, PE — a Structural Project Engineer at Cornerstone Engineering Inc. (Louisville, KY) with 10+ years of experience across Nepal, Thailand, and the USA. My work spans water and wastewater infrastructure, industrial facilities, seismic assessment, and complex retrofit design.</p>
+    <p class="about-text">Previously at Earthquake Safety Solutions (ESS) and Miyamoto International Nepal (MIN), I led multi-facility seismic retrofits, post-earthquake assessments, and performance-based designs for hospitals, schools, and high-rise buildings — coordinating with international firms including Arup.</p>
+    <p class="about-text">I specialize in nonlinear seismic analysis (Perform-3D, ASCE 41-13), environmental concrete design (ACI 350), and complex foundation systems. As Team Leader on multi-million dollar programs, I bring full project lifecycle management from field assessment to final report delivery.</p>
+    <p class="about-text" style="font-size:0.8rem;color:var(--text-dim);margin-top:1rem">Languages: Nepali (Native) · English (Fluent)</p>
+
+    <div class="edu-block">
+      <div class="edu-item">
+        <div class="edu-degree">M.Sc. Structural Engineering — 3.79 / 4.0</div>
+        <div class="edu-school">Asian Institute of Technology (AIT), Thailand · Jun 2015 – May 2017</div>
+        <div class="edu-thesis">Thesis: "Seismic Performance Improvement of Low-to-Mid Rise Buildings with Non-Symmetric Infill Walls" — Prof. Dr. Pennung Warnitchai · Nonlinear analysis in Perform-3D</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-degree">B.E. Civil Engineering — 75.85%</div>
+        <div class="edu-school">Kathford College of Engineering, Tribhuvan University · Sep 2010 – Jan 2014</div>
+      </div>
+    </div>
+
+    <div class="certs">
+      <span class="cert-badge">PE · NCEES</span>
+      <span class="cert-badge">Member · NEC</span>
+      <span class="cert-badge">SEANep</span>
+      <span class="cert-badge">Member · NEA</span>
+    </div>
   </div>
+
+  <div>
+    <div class="about-label" style="margin-bottom:1.2rem">// Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-name">Seismic Assessment</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:97%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">ETABS / SAP2000</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Perform-3D (Nonlinear)</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Risa-3D / SAFE2000</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">ACI 318 / ACI 350</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">ASCE 7 / AISC</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">Excel VBA / Mathcad</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-name">AutoCAD / Revit</div>
+        <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="footer-name">Suraj Thapa, PE</div>
   <div class="footer-links">
-    <a href="https://github.com/yourusername" target="_blank">GitHub</a>
-    <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
-    <a href="mailto:your@email.com">Email</a>
+    <a href="mailto:suraj.t@cornerstone.com" class="footer-link">Email</a>
+    <a href="mailto:suraj.t@cornerstone.com" class="footer-link">Gmail</a>
+    <a href="https://linkedin.com" class="footer-link" target="_blank">LinkedIn</a>
+    <a href="https://github.com" class="footer-link" target="_blank">GitHub</a>
   </div>
+  <div class="footer-copy">Cornerstone Engineering Inc. · Louisville, KY · +1 502-712-5611</div>
 </footer>
 
 <script>
-  // Scroll-triggered fade-in
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 80);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12 });
+// ── INTERACTIVE MAP ──
+(function() {
+  const pins = {
+    'pin-usa': {
+      country: 'United States',
+      years: '2023 – Present',
+      role: 'Structural Project Engineer\nCornerstone Engineering Inc.\nLouisville, KY · Nashville, TN · Memphis, TN',
+      cx: 148, cy: 162
+    },
+    'pin-nepal': {
+      country: 'Nepal',
+      years: '2014 – 2023',
+      role: 'Structural Engineer\nEarthquake Safety Solutions (ESS)\nMiyamoto International Nepal (MIN)\nKathmandu · Biratnagar · Pokhara · Dang',
+      cx: 620, cy: 148
+    },
+    'pin-thailand': {
+      country: 'Thailand',
+      years: '2015 – 2017',
+      role: 'M.Sc. Structural Engineering\nAsian Institute of Technology\nPathumThani, Bangkok',
+      cx: 716, cy: 174
+    }
+  };
 
-  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  const tooltip = document.getElementById('mapTooltip');
+  const ttCountry = document.getElementById('ttCountry');
+  const ttYears = document.getElementById('ttYears');
+  const ttRole = document.getElementById('ttRole');
+  const heroRight = document.getElementById('mapHero');
+  const mapSvg = document.getElementById('mapSvg');
+
+  Object.entries(pins).forEach(([id, data]) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.addEventListener('mouseenter', (e) => {
+      // highlight region
+      const regionId = id === 'pin-usa' ? 'usaRegion' : id === 'pin-nepal' ? 'nepalRegion' : 'thaiRegion';
+      const region = document.getElementById(regionId);
+      if (region) region.style.fill = '#2e5898';
+
+      // show tooltip
+      ttCountry.textContent = data.country;
+      ttYears.textContent = data.years;
+      ttRole.innerHTML = data.role.split('\n').map(l => `<span>${l}</span>`).join('<br>');
+
+      positionTooltip(data.cx, data.cy);
+      tooltip.classList.add('visible');
+    });
+
+    el.addEventListener('mouseleave', () => {
+      const regionId = id === 'pin-usa' ? 'usaRegion' : id === 'pin-nepal' ? 'nepalRegion' : 'thaiRegion';
+      const region = document.getElementById(regionId);
+      if (region) region.style.fill = id === 'pin-usa' ? '#243d70' : id === 'pin-nepal' ? '#243d70' : '#243d70';
+      tooltip.classList.remove('visible');
+    });
+  });
+
+  function positionTooltip(svgX, svgY) {
+    const rect = heroRight.getBoundingClientRect();
+    const svgRect = mapSvg.getBoundingClientRect();
+    // scale SVG coords to actual pixels
+    const scaleX = svgRect.width / 960;
+    const scaleY = svgRect.height / 600;
+    const px = svgX * scaleX;
+    const py = svgY * scaleY;
+
+    let left = px + 18;
+    let top = py - 20;
+    // prevent overflow right
+    if (left + 200 > rect.width) left = px - 210;
+    // prevent overflow bottom
+    if (top + 120 > rect.height) top = rect.height - 130;
+    if (top < 10) top = 10;
+
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+  }
+})();
+
+// ── YEAR FILTER ──
+function filterYear(year) {
+  document.querySelectorAll('.year-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.year === year);
+  });
+  const cards = document.querySelectorAll('.project-card');
+  const dividers = document.querySelectorAll('.year-divider');
+  let visible = 0;
+  if (year === 'all') {
+    cards.forEach(c => c.classList.remove('hidden'));
+    dividers.forEach(d => d.style.display = '');
+    visible = cards.length;
+    document.getElementById('yearDisplay').textContent = 'All years';
+  } else {
+    cards.forEach(c => {
+      const show = c.dataset.year === year;
+      c.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    dividers.forEach(d => {
+      d.style.display = d.dataset.yearDiv === year ? '' : 'none';
+    });
+    document.getElementById('yearDisplay').textContent = year === 'pre2022' ? 'Pre-2022' : year;
+  }
+  document.getElementById('countDisplay').textContent = visible;
+  document.getElementById('emptyState').style.display = visible === 0 ? 'block' : 'none';
+}
 </script>
 </body>
 </html>
